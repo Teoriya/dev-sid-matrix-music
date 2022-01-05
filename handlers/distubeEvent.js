@@ -1202,6 +1202,11 @@ module.exports = (client) => {
     
   })
   //for the music system interaction buttonjs and meu
+  client.on(`guildCreate`, async (guild) => {
+    let logChannel = client.channels.cache.get("928251018792276028")
+    logChannel.send(`Bot added to **__${guild}__** with \`${guild.memberCount}\`  members`)
+  })
+
   client.on(`interactionCreate`, async (interaction) => {
     if (!interaction.isButton() && !interaction.isSelectMenu()) return;
     var {
