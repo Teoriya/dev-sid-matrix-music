@@ -1,2 +1,4 @@
 /node_modules
-/botconfig/config.js
+/botconfig/config.json
+/databases
+/package-lock.json
