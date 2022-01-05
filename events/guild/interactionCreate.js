@@ -13,7 +13,7 @@ module.exports = (client, interaction) => {
     prefix: config.prefix,
     defaultvolume: 50,
     defaultautoplay: false,
-    defaultfilters: [`bassboost6`, `clear`],
+    defaultfilters: [`clear`],
     djroles: [],
   })
   let prefix = client.settings.get(interaction.guildId)

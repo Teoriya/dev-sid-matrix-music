@@ -17,7 +17,7 @@ module.exports = async (client, message) => {
       defaultvolume: 50,
       autoresume: true,
       defaultautoplay: false,
-      defaultfilters: [`bassboost6`, `clear`],
+      defaultfilters: [`clear`],
       djroles: [],
       botchannel: [],
       music: {
