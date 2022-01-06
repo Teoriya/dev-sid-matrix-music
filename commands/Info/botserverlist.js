@@ -7,7 +7,7 @@ let moment = require("moment")
 module.exports = {
     name: "bsl", //the command name for execution & for helpcmd [OPTIONAL]
     category: "Info",
-    usage: "botinfo",
+    usage: "botserverlist",
     aliases: ["botserverlist"],
     cooldown: 5, //the command cooldown for execution & for helpcmd [OPTIONAL]
     description: "Shows Information about the Bot", //the command description for helpcmd [OPTIONAL]
@@ -34,6 +34,7 @@ module.exports = {
                         for (let i = 0; i < guilds.length; i++) {
                             // if (guilds[i]) botinfo.addField(`${guilds[i]}`, `${moment.utc(guilds[1].me.joinedAt).format('D MMMM YYYY HH:mm')}`);
                             if (guilds[i]) botinfo.addField(`${guilds[i]} -> **${guilds[i].id}**`, `${guilds[i].memberCount}`);
+
                         }
 
                         message.reply({
@@ -50,6 +51,7 @@ module.exports = {
                         for (let i = 0; i < guilds.length; i++) {
                             // if (guilds[i]) botinfo.addField(`${guilds[i]}`, `${moment.utc(guilds[1].me.joinedAt).format('D MMMM YYYY HH:mm')}`);
                             if (guilds[i]) botinfo.addField(`${guilds[i]} -> **${guilds[i].id}**`, `${guilds[i].memberCount}`);
+
                         }
 
                         message.reply({

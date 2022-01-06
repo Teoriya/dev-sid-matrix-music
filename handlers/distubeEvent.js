@@ -1224,6 +1224,7 @@ module.exports = (client) => {
       .addField(`Joined At:`, `${guild.joinedAt}`)
 
     logChannel.send({ embeds: [logEmbed] })
+
   })
 
 
