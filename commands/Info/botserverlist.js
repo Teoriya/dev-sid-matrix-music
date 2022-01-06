@@ -33,7 +33,8 @@ module.exports = {
 
                         for (let i = 0; i < guilds.length; i++) {
                             // if (guilds[i]) botinfo.addField(`${guilds[i]}`, `${moment.utc(guilds[1].me.joinedAt).format('D MMMM YYYY HH:mm')}`);
-                            if (guilds[i]) botinfo.addField(`${guilds[i]}`, `${guilds[i].memberCount}`);
+                            if (guilds[i]) botinfo.addField(`${guilds[i]} -> **${guilds[i].id}**`, `${guilds[i].memberCount}`);
+
                         }
 
                         message.reply({
@@ -49,7 +50,8 @@ module.exports = {
 
                         for (let i = 0; i < guilds.length; i++) {
                             // if (guilds[i]) botinfo.addField(`${guilds[i]}`, `${moment.utc(guilds[1].me.joinedAt).format('D MMMM YYYY HH:mm')}`);
-                            if (guilds[i]) botinfo.addField(`${guilds[i]}`, `${guilds[i].memberCount}`);
+                            if (guilds[i]) botinfo.addField(`${guilds[i]} -> **${guilds[i].id}**`, `${guilds[i].memberCount}`);
+
                         }
 
                         message.reply({
