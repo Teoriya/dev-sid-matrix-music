@@ -1209,12 +1209,15 @@ module.exports = (client) => {
     let logChannel = client.channels.cache.get("928251018792276028")
     logChannel.send(`Bot added to **__${guild}__** with \`${guild.memberCount}\`  members`)
     let logEmbed = new MessageEmbed()
-      .setTitle(`**__${guild}__**`)
+      .setTitle(`**__${guild}__** -> ${guild.id}`)
+      .setThumbnail(guild.iconURL({dynamic:true})) 
       .addField(`Owner Info`, `<@${guild.ownerId}> with ID **${guild.ownerId}**`)
       .addField(`Server Info`, `Member Count -> **__${guild.memberCount}__**`)
+      .addField(`Joined At:`, `${guild.joinedAt}`)
     
     logChannel.send({embeds: [logEmbed]})
   })
+
 
   client.on(`interactionCreate`, async (interaction) => {
     if (!interaction.isButton() && !interaction.isSelectMenu()) return;
