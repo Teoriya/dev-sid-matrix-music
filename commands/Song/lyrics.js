@@ -11,7 +11,6 @@ const {
 	check_if_dj
 	} = require("../../handlers/functions");
 	const fetch = require("node-fetch");
-
 	module.exports = {
 	name: "lyrics", //the command name for the Slash Command
 	category: "Song",
@@ -28,7 +27,7 @@ const {
 				member,
 				channelId,
 				guildId,
-				applicationId,
+		  applicationId,
 				commandName,
 				deferred,
 				replied,

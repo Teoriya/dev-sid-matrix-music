@@ -1505,28 +1505,28 @@ module.exports = (client) => {
         }
           break;
         case `Lyrics`: {
-          // const data = await fetch(
-          //       `https://some-random-api.ml/lyrics?title=${encodeURIComponent(Text)}`
-          //     ).then((res) => res.json())
-          //     if (!data) return message.channel.send({ content: "Song not found." });
-          //     const embed = new MessageEmbed()
-          //       .setTitle(`${data.title} - ${data.author}`)
-          //       .setDescription(data.lyrics)
-          //       .setThumbnail(data.thumbnail.genius);
-          //     return i.reply({
-          //       content: embed,
-          //       ephemeral: true
-          //     }).then(interaction => {
-          //       if (newQueue.textChannel.id === client.settings.get(newQueue.id, `music.channel`)) {
-          //         setTimeout(() => {
-          //           try {
-          //             i.deleteReply().catch(console.log);
-          //           } catch (e) {
-          //             console.log(e)
-          //           }
-          //         }, 3000)
-          //       }
-          //     })
+          const data = await fetch(
+                `https://some-random-api.ml/lyrics?title=${encodeURIComponent(Text)}`
+              ).then((res) => res.json())
+              if (!data) return message.channel.send({ content: "Song not found." });
+              const embed = new MessageEmbed()
+                .setTitle(`${data.title} - ${data.author}`)
+                .setDescription(data.lyrics)
+                .setThumbnail(data.thumbnail.genius);
+              return i.reply({
+                content: embed,
+                ephemeral: true
+              }).then(interaction => {
+                if (newQueue.textChannel.id === client.settings.get(newQueue.id, `music.channel`)) {
+                  setTimeout(() => {
+                    try {
+                      i.deleteReply().catch(console.log);
+                    } catch (e) {
+                      console.log(e)
+                    }
+                  }, 3000)
+                }
+              })
         }
           break;
       }
