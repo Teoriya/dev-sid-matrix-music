@@ -88,18 +88,27 @@ module.exports = {
 				if (!queue) options.textChannel = guild.channels.cache.get(channelId)
 				await client.distube.playVoiceChannel(channel, Text, options)
 				//Edit the reply
-				newmsg.edit({
-					content: `${queue?.songs?.length > 0 ? "👍 Added" : "🎶 Now Playing"}: \`\`\`css\n${Text}\n\`\`\``,
-				}).catch(e => {
-					console.log(e)
-				})
+				if (queue) {
+					newmsg.edit({
+						content: `${queue?.songs?.length > 0 ? "👍 Added" : "🎶 Now Playing"}: \`\`\`css\n${Text}\n\`\`\` \n Added at position -> \`${queue.songs.length - 1}\``,
+					}).catch(e => {
+						console.log(e)
+					})
+				} else {
+					newmsg.edit({
+						content: `${queue?.songs?.length > 0 ? "👍 Added" : "🎶 Now Playing"}: \`\`\`css\n${Text}\n\`\`\` \n Added at position -> \`0\``,
+					}).catch(e => {
+						console.log(e)
+					})
+				}
+
 			} catch (e) {
 				console.log(e.stack ? e.stack : e)
 				message.reply({
 					content: `${client.allEmojis.x} | Error: `,
 					embeds: [
 						new MessageEmbed().setColor(ee.wrongcolor)
-						.setDescription(`\`\`\`${e}\`\`\``)
+							.setDescription(`\`\`\`${e}\`\`\``)
 					],
 
 				})
