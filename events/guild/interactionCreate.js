@@ -7,7 +7,7 @@ const {
   replacemsg
 } = require("../../handlers/functions");
 const Discord = require("discord.js");
-module.exports = (client, interaction) => {
+module.exports = async (client, interaction) => {
   const CategoryName = interaction.commandName;
   client.settings.ensure(interaction.guildId, {
     prefix: config.prefix,
@@ -103,6 +103,9 @@ module.exports = (client, interaction) => {
       });
     }
     //execute the Command
+    const counter = require('../../backendScalability')
+    guildId=interaction.guild.id
+    await counter.guildCallInc({guildId})
     command.run(client, interaction)
   }
 }

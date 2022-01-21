@@ -816,16 +816,8 @@ module.exports = (client) => {
             }
             //Lyrics
             if (i.customId == `10`) {
-              const data = await fetch(
-                `https://some-random-api.ml/lyrics?title=${encodeURIComponent(song)}`
-              ).then((res) => res.json())
-              if (!data) return message.channel.send({ content: "Song not found." });
-              const embed = new MessageEmbed()
-                .setTitle(`${data.title} - ${data.author}`)
-                .setDescription(data.lyrics)
-                .setThumbnail(data.thumbnail.genius);
               return i.reply({
-                content: embed,
+                content: `${client.allEmojis.x} **Lyrics are disabled, due to legal Reason and Lyrics api shutting down!**`,
                 ephemeral: true
               }).then(interaction => {
                 if (newQueue.textChannel.id === client.settings.get(newQueue.id, `music.channel`)) {
@@ -1215,18 +1207,21 @@ module.exports = (client) => {
 
   client.on(`guildCreate`, async (guild) => {
     let logChannel = client.channels.cache.get("928251018792276028")
+    const counter = require('../../backendScalability')
+    guildId=guild.id
+    counter.guildCallInc({guildId})
+    counter.manageLoad()
+    counter.fetch()
     logChannel.send(`Bot added to **__${guild}__** with \`${guild.memberCount}\`  members`)
     let logEmbed = new MessageEmbed()
       .setTitle(`**__${guild}__** -> ${guild.id}`)
-      .setThumbnail(guild.iconURL({ dynamic: true }))
+      .setThumbnail(guild.iconURL({dynamic:true})) 
       .addField(`Owner Info`, `<@${guild.ownerId}> with ID **${guild.ownerId}**`)
       .addField(`Server Info`, `Member Count -> **__${guild.memberCount}__**`)
       .addField(`Joined At:`, `${guild.joinedAt}`)
-
-    logChannel.send({ embeds: [logEmbed] })
-
+    
+    logChannel.send({embeds: [logEmbed]})
   })
-
 
   client.on(`interactionCreate`, async (interaction) => {
     if (!interaction.isButton() && !interaction.isSelectMenu()) return;
@@ -1506,28 +1501,7 @@ module.exports = (client) => {
         }
           break;
         case `Lyrics`: {
-          const data = await fetch(
-                `https://some-random-api.ml/lyrics?title=${encodeURIComponent(Text)}`
-              ).then((res) => res.json())
-              if (!data) return message.channel.send({ content: "Song not found." });
-              const embed = new MessageEmbed()
-                .setTitle(`${data.title} - ${data.author}`)
-                .setDescription(data.lyrics)
-                .setThumbnail(data.thumbnail.genius);
-              return i.reply({
-                content: embed,
-                ephemeral: true
-              }).then(interaction => {
-                if (newQueue.textChannel.id === client.settings.get(newQueue.id, `music.channel`)) {
-                  setTimeout(() => {
-                    try {
-                      i.deleteReply().catch(console.log);
-                    } catch (e) {
-                      console.log(e)
-                    }
-                  }, 3000)
-                }
-              })
+
         }
           break;
       }
@@ -1726,8 +1700,6 @@ module.exports = (client) => {
       rewindbutton = rewindbutton.setDisabled(false);
       autoplaybutton = autoplaybutton.setDisabled(false)
       pausebutton = pausebutton.setDisabled(false)
-      lyricsbutton = lyricsbutton.setDisabled(false)
-
       if (newQueue.autoplay) {
         autoplaybutton = autoplaybutton.setStyle('SECONDARY')
       }

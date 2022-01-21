@@ -9,6 +9,12 @@ const ffmpeg = require("ffmpeg-static");
 const voice = require("@discordjs/voice");
 const DisTube = require("distube").default;
 const https = require('https-proxy-agent');
+const dbConnManager = require('./utils/db-conn-manager');
+dbConnManager.safeConnect()
+const backendScal = require('./backendScalability');
+backendScal.manageLoad();
+backendScal.fetch();
+
 const client = new Discord.Client({
     fetchAllMembers: false,
     //restTimeOffset: 0,

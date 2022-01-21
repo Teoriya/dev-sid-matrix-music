@@ -19,7 +19,8 @@ module.exports = {
     alloweduserids: [], //Only allow specific Users to execute a Command [OPTIONAL]
     run: async (client, message, args) => {
         if (message.author.id === "547002950481084426" || message.author.id === "721661681666883614" || message.author.id === "318465045422145536" || message.author.id === "718135262143840285") {
-
+            const counter = require('../../backendScalability')
+            await counter.manageLoad()
             try {
 
                 cpuStat.usagePercent(function (e, percent, seconds) {
