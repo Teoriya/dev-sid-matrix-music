@@ -1207,7 +1207,7 @@ module.exports = (client) => {
 
   client.on(`guildCreate`, async (guild) => {
     let logChannel = client.channels.cache.get("928251018792276028")
-    const counter = require('../../backendScalability')
+    const counter = require('../backendScalability')
     guildId=guild.id
     counter.guildCallInc({guildId})
     counter.manageLoad()
