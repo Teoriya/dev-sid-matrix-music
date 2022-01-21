@@ -62,7 +62,7 @@ module.exports = {
 				if(!newQueue)
 				if (!newQueue || !newQueue.songs || newQueue.songs.length == 0) return message.reply({
 					embeds: [
-						new MessageEmbed().setColor(ee.wrongcolor).setTitle(`${client.allEmojis.x} **I am nothing Playing right now!**`)
+						new MessageEmbed().setColor(ee.wrongcolor).setTitle(`${client.allEmojis.x} **I am playing nothing. right now!**`)
 					],
 				})
 				if (check_if_dj(client, member, newQueue.songs[0])) {

@@ -32,7 +32,7 @@ module.exports = {
           ephemeral: true
         })
         .then(newMsg => newMsg.edit({
-          content: `${client.allEmojis.ping} Bot Ping: \`${Math.floor((Date.now() - message.createdTimestamp) - 2 * Math.floor(client.ws.ping))} ms\`\n\n${client.allEmojis.ping} Api Ping: \`${Math.floor(client.ws.ping)} ms\``,
+          content: `${client.allEmojis.ping} Bot Ping: \`${Math.floor((newMsg.createdTimestamp - message.createdTimestamp) - 2 * Math.floor(client.ws.ping))} ms\`\n\n${client.allEmojis.ping} Api Ping: \`${Math.floor(client.ws.ping)} ms\``,
           ephemeral: true
         }).catch(e => {
           return console.log(e)
